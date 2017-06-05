@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+
+
 class ViewController : UIViewController ,UITableViewDataSource , UITableViewDelegate {
     @IBOutlet weak var tableview: UITableView!
     
@@ -24,11 +27,22 @@ class ViewController : UIViewController ,UITableViewDataSource , UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.default,reuseIdentifier: "mycell")
-        cell.textLabel?.text="Sudeb Sarkar"
-//        cell.detailTextLabel?.text=" jhdkjfhsdfs ksfkhfhs fhskfks hfksd fs dksfdkskfsdhsd hsubtitle#\(indexPath.row)"
-        
-        return cell
+        if (indexPath.item%2)==0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "myCell") as! TableViewCell
+            
+            cell.lblName?.text = "Sudeb"
+            cell.lblDesc?.text = "Sudeb Sarkar"
+            cell.userImage?.image = UIImage(named: "image1.jpg")
+            return cell
+
+        }else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "myCell2") as! TableViewCell2
+            cell.lblName?.text = "Koushik"
+            cell.lblDesc?.text = "Koushik Nandi"
+            cell.userImage?.image = UIImage(named:"image2.jpg")
+            return cell
+
+        }
     }
     
     func tableView(_ tableView:UITableView, numberOfRowsInSection section:Int) -> Int
